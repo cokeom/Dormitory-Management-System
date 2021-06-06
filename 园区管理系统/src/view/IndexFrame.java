@@ -30,8 +30,8 @@ public class IndexFrame extends JFrame {
 	 * Launch the application.
 	 */
 	private RevisePassword revisePassword = null;
-	public final UserType userType;
-	public final Admin admin;
+	public static UserType userType;
+	public static Admin admin;
 
 	/**
 	 * Create the frame.
