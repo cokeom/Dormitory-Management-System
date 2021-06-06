@@ -1,0 +1,26 @@
+package dao;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+public class AdminDao extends BaseDao{
+	public boolean selectAdmin(String name,String password) {
+		String sqlStr = "select * from s_admin where name = ? and password = ?";
+		try {
+			this.pStatement = this.con.prepareStatement(sqlStr);
+			this.pStatement.setString(1, name);
+			this.pStatement.setString(2, password);
+			
+			ResultSet executeQuery = this.pStatement.executeQuery();
+			if(executeQuery.next()) {
+				return true;
+			}
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			this.close();
+		}
+		return false;
+	}
+
+}

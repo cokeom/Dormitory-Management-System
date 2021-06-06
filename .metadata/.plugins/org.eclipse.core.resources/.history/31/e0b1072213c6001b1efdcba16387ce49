@@ -1,0 +1,100 @@
+package view;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import java.awt.Font;
+import javax.swing.JComboBox;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import javax.swing.ImageIcon;
+
+public class LoginFrame extends JFrame {
+
+	private JPanel contentPane;
+	private JTextField textField;
+	private JTextField textField_1;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					LoginFrame frame = new LoginFrame();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public LoginFrame() {
+		setTitle("园区管理系统");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 300);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("\u767B\u5F55\u754C\u9762");
+		lblNewLabel.setFont(new Font("΢���ź� Light", Font.BOLD, 30));
+		lblNewLabel.setBounds(158, 0, 199, 60);
+		contentPane.add(lblNewLabel);
+		
+		JLabel lblNewLabel_1 = new JLabel("用户名");
+		lblNewLabel_1.setIcon(new ImageIcon(LoginFrame.class.getResource("/image/\u7528\u6237\u540D.png")));
+		lblNewLabel_1.setBounds(66, 70, 58, 15);
+		contentPane.add(lblNewLabel_1);
+		
+		JLabel lblNewLabel_2 = new JLabel("密码");
+		lblNewLabel_2.setIcon(new ImageIcon(LoginFrame.class.getResource("/image/\u5BC6\u78012.png")));
+		lblNewLabel_2.setBounds(66, 111, 58, 15);
+		contentPane.add(lblNewLabel_2);
+		
+		JLabel lblNewLabel_3 = new JLabel("\u7528\u6237\u7C7B\u578B");
+		lblNewLabel_3.setIcon(new ImageIcon(LoginFrame.class.getResource("/image/\u7528\u6237\u7C7B\u578B_\u753B\u677F 1.png")));
+		lblNewLabel_3.setBounds(66, 153, 85, 15);
+		contentPane.add(lblNewLabel_3);
+		
+		textField = new JTextField();
+		textField.setBounds(193, 67, 131, 21);
+		contentPane.add(textField);
+		textField.setColumns(10);
+		
+		textField_1 = new JTextField();
+		textField_1.setBounds(193, 108, 131, 21);
+		contentPane.add(textField_1);
+		textField_1.setColumns(10);
+		
+		JComboBox comboBox = new JComboBox();
+		comboBox.setBounds(193, 149, 131, 23);
+		contentPane.add(comboBox);
+		
+		JButton btnNewButton = new JButton("\u6CE8\u518C");
+		btnNewButton.setBounds(10, 230, 97, 23);
+		contentPane.add(btnNewButton);
+		
+		JButton btnNewButton_1 = new JButton("\u91CD\u7F6E");
+		btnNewButton_1.setBounds(117, 230, 97, 23);
+		contentPane.add(btnNewButton_1);
+		
+		JButton btnNewButton_2 = new JButton("\u767B\u5F55");
+		btnNewButton_2.setBounds(224, 230, 97, 23);
+		contentPane.add(btnNewButton_2);
+		
+		JButton btnNewButton_3 = new JButton("\u53D6\u6D88");
+		btnNewButton_3.setBounds(331, 230, 97, 23);
+		contentPane.add(btnNewButton_3);
+	}
+}

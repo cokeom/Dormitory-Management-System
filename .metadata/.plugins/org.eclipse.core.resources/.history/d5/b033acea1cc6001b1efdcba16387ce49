@@ -1,0 +1,27 @@
+package util;
+
+import java.io.InputStream;
+import java.util.Properties;
+
+public class ReadProperties {
+
+	private static ReadProperties rp;
+	
+	public String Url;
+	public String UserName;
+	public String Password;
+
+	private void loadProperties() {
+		InputStream ips = getClass().getResourceAsStream("/db.properties");
+		Properties properties = new Properties();
+		
+		try {
+			properties.load(ips);
+			this.Url = properties.getProperty("url");
+			this.UserName = properties.getProperty("username");
+			this.Password = properties.getProperty("password");
+			
+		}
+	}
+
+}
