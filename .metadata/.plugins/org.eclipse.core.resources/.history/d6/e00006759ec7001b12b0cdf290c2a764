@@ -1,0 +1,9 @@
+package dao;
+
+public class StudentInfoDao {
+
+	public String addStudentInfo(StudentInfo tempStu) {
+		String resultStr = "添加失败";
+		
+	}
+}

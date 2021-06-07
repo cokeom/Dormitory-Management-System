@@ -11,8 +11,12 @@
     <fullyQualifiedTypeName name="model.UserType"/>
     <fullyQualifiedTypeName name="model.Admin"/>
     <fullyQualifiedTypeName name="view.systemManage.RevisePassword"/>
-    <fullyQualifiedTypeName name="javax.swing.JOptionPane"/>
     <fullyQualifiedTypeName name="view.IndexFrame"/>
     <fullyQualifiedTypeName name="dao.AdminDao"/>
     <fullyQualifiedTypeName name="java.lang.System"/>
+    <fullyQualifiedTypeName name="view.studentInfor.AddStudentFrame"/>
+    <fullyQualifiedTypeName name="model.StudentInfo"/>
+    <fullyQualifiedTypeName name="dao.StudentInfoDao"/>
+    <fullyQualifiedTypeName name="javax.swing.JOptionPane"/>
+    <fullyQualifiedTypeName name="model.Room"/>
 </qualifiedTypeNameHistroy>

@@ -9,6 +9,7 @@ import javax.swing.border.EmptyBorder;
 
 import model.Admin;
 import model.UserType;
+import view.studentInfor.AddStudentFrame;
 import view.systemManage.RevisePassword;
 
 import javax.swing.JMenuBar;
@@ -173,7 +174,9 @@ public class IndexFrameAdmin extends JFrame {
 
 	protected void addStudent(ActionEvent e) {
 		// TODO Auto-generated method stub
-		
+		AddStudentFrame addStudentFrame = new AddStudentFrame();
+		addStudentFrame.setVisible(true);
+		desktopPane.add(addStudentFrame);
 	}
 
 	protected void revisePassword(ActionEvent ae) {

@@ -1,0 +1,44 @@
+package dao;
+
+import java.sql.SQLException;
+
+import model.Room;
+import model.StudentInfo;
+
+public class StudentInfoDao extends BaseDao{
+
+	public String addStudentInfo(StudentInfo tempStu , Room tempRoom) {
+		String resultStr = "添加失败";
+		String sqlStr1 = "insert into studentInfo values(?,?,?,?,?,?,?,?)";
+		String sqlStr2 = "insert into room values(?,?,?,?,?)";
+		try {
+			this.pStatement = this.con.prepareStatement(sqlStr1);
+			this.pStatement.setString(1,tempStu.getUsername());
+			this.pStatement.setString(2,tempStu.getName());
+			this.pStatement.setString(3,tempStu.getGrade());
+			this.pStatement.setString(4,tempStu.getAcademy());
+			this.pStatement.setString(5,tempStu.getMajor());
+			this.pStatement.setString(6,tempStu.getSex());
+			this.pStatement.setInt(7,tempStu.getAge());
+			this.pStatement.setString(8,tempStu.getTelephone());
+			
+			if(this.pStatement.executeUpdate()>0) {
+				this.pStatement = this.con.prepareStatement(sqlStr2);
+				this.pStatement.setString(1,tempRoom.getBuildingname());
+				this.pStatement.setInt(2, tempRoom.getHousenumber());
+				this.pStatement.setInt(3, tempRoom.getElectricity());
+				this.pStatement.setInt(4, tempRoom.getWater());
+				this.pStatement.setInt(5, tempRoom.getPopulation());
+				if(this.pStatement.executeUpdate()>0) {
+					resultStr = "添加成功";
+				}
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			this.close();
+		}
+		return resultStr;
+	}
+}

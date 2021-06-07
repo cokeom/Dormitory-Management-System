@@ -1,0 +1,16 @@
+package dao;
+
+import model.StudentInfo;
+
+public class StudentInfoDao extends BaseDao{
+
+	public String addStudentInfo(StudentInfo tempStu) {
+		String resultStr = "添加失败";
+		String sqlStr = "insert into studentinfo values(?,?,?,?,?,?,?,?)";
+		
+		
+		
+		return resultStr;
+		
+	}
+}

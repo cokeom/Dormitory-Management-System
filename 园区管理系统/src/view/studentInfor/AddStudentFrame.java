@@ -4,9 +4,18 @@ import java.awt.EventQueue;
 
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JTextField;
+
+import dao.StudentInfoDao;
+import model.Room;
+import model.StudentInfo;
+
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class AddStudentFrame extends JInternalFrame {
 	private JTextField username;
@@ -21,29 +30,14 @@ public class AddStudentFrame extends JInternalFrame {
 	private JTextField housenumber;
 
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					AddStudentFrame frame = new AddStudentFrame();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
 	 * Create the frame.
 	 */
 	public AddStudentFrame() {
 		setTitle("增加学生");
 		setBounds(100, 100, 647, 408);
 		getContentPane().setLayout(null);
-		
+		setClosable (true);
+		setIconifiable(true);
 		JLabel lblNewLabel = new JLabel("楼栋名*");
 		lblNewLabel.setFont(new Font("微软雅黑", Font.BOLD, 13));
 		lblNewLabel.setBounds(23, 281, 58, 15);
@@ -135,11 +129,21 @@ public class AddStudentFrame extends JInternalFrame {
 		getContentPane().add(major);
 		
 		JButton btnNewButton = new JButton("确认");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent ae) {
+				addStudentButton(ae);
+			}
+		});
 		btnNewButton.setFont(new Font("微软雅黑", Font.BOLD, 13));
 		btnNewButton.setBounds(314, 330, 97, 23);
 		getContentPane().add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("重置");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent ae) {
+				resetButton(ae);
+			}
+		});
 		btnNewButton_1.setFont(new Font("微软雅黑", Font.BOLD, 13));
 		btnNewButton_1.setBounds(464, 331, 97, 23);
 		getContentPane().add(btnNewButton_1);
@@ -154,5 +158,41 @@ public class AddStudentFrame extends JInternalFrame {
 		housenumber.setBounds(421, 279, 156, 21);
 		getContentPane().add(housenumber);
 
+	}
+
+	protected void addStudentButton(ActionEvent ae) {
+		// TODO Auto-generated method stub
+		String username = this.username.getText();
+		String name = this.name.getText();
+		String grade = this.grade.getText();
+		String academy = this.academy.getText();
+		String sex = this.sex.getText();
+		String buildingname = this.buildingname.getText();
+		int housenumber = Integer.parseInt(this.housenumber.getText());
+		int age = Integer.parseInt(this.age.getText());
+		String telephone = this.telephone.getText();
+		String major = this.major.getText();
+		
+		
+		StudentInfo tempStudent = new StudentInfo(username,name,grade,academy,major,sex,age,telephone);
+		Room tempRoom = new Room(buildingname,housenumber,1,1,1);
+		
+		
+		StudentInfoDao studentinfodao = new StudentInfoDao();
+		JOptionPane.showMessageDialog(this, studentinfodao.addStudentInfo(tempStudent, tempRoom));
+	}
+
+	protected void resetButton(ActionEvent ae) {
+		// TODO Auto-generated method stub
+		this.username.setText("");
+		this.name.setText("");
+		this.grade.setText("");
+		this.academy.setText("");
+		this.sex.setText("");
+		this.buildingname.setText("");
+		this.housenumber.setText("");
+		this.age.setText("");
+		this.telephone.setText("");
+		this.major.setText("");
 	}
 }
