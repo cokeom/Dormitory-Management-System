@@ -1,0 +1,13 @@
+package model;
+
+public class StudentInfo {
+	private String username;
+	private String name;
+	private String grade;
+	private String academy;
+	private String major;
+	private String sex;
+	private int age;
+	private String telephone;
+	
+}

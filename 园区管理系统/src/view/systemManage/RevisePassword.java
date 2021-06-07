@@ -11,7 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JTextField;
 
 import dao.AdminDao;
-import view.IndexFrame;
+import view.IndexFrameAdmin;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -85,8 +85,8 @@ public class RevisePassword extends JInternalFrame {
 		againPasswordText.setBounds(160, 173, 141, 21);
 		getContentPane().add(againPasswordText);
 		
-		String userTypeStr = IndexFrame.userType.getName();
-		String adminNameStr = IndexFrame.admin.getName();
+		String userTypeStr = IndexFrameAdmin.userType.getName();
+		String adminNameStr = IndexFrameAdmin.admin.getName();
 		JLabel lblNewLabel_4 = new JLabel("【"+userTypeStr+"】"+adminNameStr);
 		lblNewLabel_4.setBounds(160, 40, 141, 20);
 		getContentPane().add(lblNewLabel_4);
@@ -110,16 +110,16 @@ public class RevisePassword extends JInternalFrame {
 			JOptionPane.showMessageDialog(this, "请再次输入密码");
 			return;
 		}
-		if("管理员".equals(IndexFrame.userType.getName())) {
+		if("管理员".equals(IndexFrameAdmin.userType.getName())) {
 			AdminDao adminDao = new AdminDao();
-			JOptionPane.showMessageDialog(this, adminDao.revisePassword(IndexFrame.admin, newPassword));
+			JOptionPane.showMessageDialog(this, adminDao.revisePassword(IndexFrameAdmin.admin, newPassword));
 			this.oldPasswordText.setText("");
 			this.newPasswordText.setText("");
 			this.againPasswordText.setText("");
 			setVisible(false);
 			return;
 		}
-		if("学生".equals(IndexFrame.userType.getName())) {
+		if("学生".equals(IndexFrameAdmin.userType.getName())) {
 			return;
 		}
 		

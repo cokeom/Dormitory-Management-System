@@ -147,7 +147,7 @@ public class LoginFrame extends JFrame {
 				JOptionPane.showMessageDialog(this, "用户名或密码错误");
 				return;
 			}
-			IndexFrame indexFrame = new IndexFrame(userType,admin);
+			IndexFrameAdmin indexFrame = new IndexFrameAdmin(userType,admin);
 			indexFrame.setVisible(true);
 			this.dispose();
 		}else {

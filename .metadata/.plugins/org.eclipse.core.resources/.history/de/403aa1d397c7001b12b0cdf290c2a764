@@ -1,0 +1,10 @@
+package model;
+
+public class Room {
+	private String buildingname;
+	private int housenumber;
+	private int electricity;
+	private int housenumber;
+	private int housenumber;
+	
+}
