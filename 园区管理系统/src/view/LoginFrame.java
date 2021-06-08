@@ -10,6 +10,7 @@ import javax.swing.border.EmptyBorder;
 import dao.AdminDao;
 import model.Admin;
 import model.UserType;
+import view.studentInfor.ListStudentFrame;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -31,9 +32,6 @@ public class LoginFrame extends JFrame {
 	private JPasswordField adminPsd;
 	private JComboBox adminTypeComb;
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -46,10 +44,8 @@ public class LoginFrame extends JFrame {
 			}
 		});
 	}
-
-	/**
-	 * Create the frame.
-	 */
+	
+	
 	public LoginFrame() {
 		setTitle("园区管理系统");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -59,9 +55,9 @@ public class LoginFrame extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("\u767B\u5F55\u754C\u9762");
+		JLabel lblNewLabel = new JLabel("园区管理系统");
 		lblNewLabel.setFont(new Font("΢���ź� Light", Font.BOLD, 30));
-		lblNewLabel.setBounds(158, 0, 199, 60);
+		lblNewLabel.setBounds(117, 0, 199, 60);
 		contentPane.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("用户名");
@@ -90,10 +86,12 @@ public class LoginFrame extends JFrame {
 		contentPane.add(adminTypeComb);
 		
 		JButton btnNewButton = new JButton("注册");
+		btnNewButton.setIcon(new ImageIcon(LoginFrame.class.getResource("/image/注册.png")));
 		btnNewButton.setBounds(10, 230, 97, 23);
 		contentPane.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("重置");
+		btnNewButton_1.setIcon(new ImageIcon(LoginFrame.class.getResource("/image/重置 (1).png")));
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ae) {
 				resetButton(ae);
@@ -103,6 +101,7 @@ public class LoginFrame extends JFrame {
 		contentPane.add(btnNewButton_1);
 		
 		JButton btnNewButton_2 = new JButton("登录");
+		btnNewButton_2.setIcon(new ImageIcon(LoginFrame.class.getResource("/image/登录.png")));
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ae) {
 				confirmButton(ae);
@@ -112,6 +111,7 @@ public class LoginFrame extends JFrame {
 		contentPane.add(btnNewButton_2);
 		
 		JButton btnNewButton_3 = new JButton("取消");
+		btnNewButton_3.setIcon(new ImageIcon(LoginFrame.class.getResource("/image/取消.png")));
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.exit(0);

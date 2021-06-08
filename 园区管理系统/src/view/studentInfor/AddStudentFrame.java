@@ -12,6 +12,8 @@ import javax.swing.JTextField;
 import dao.StudentInfoDao;
 import model.Room;
 import model.StudentInfo;
+import model.StudentRoom;
+import view.IndexFrameAdmin;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -28,6 +30,8 @@ public class AddStudentFrame extends JInternalFrame {
 	private JTextField telephone;
 	private JTextField major;
 	private JTextField housenumber;
+	private StudentInfo tempStudent = null;
+	private StudentRoom tempSR = null;
 
 	/**
 	 * Create the frame.
@@ -141,7 +145,8 @@ public class AddStudentFrame extends JInternalFrame {
 		JButton btnNewButton_1 = new JButton("重置");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ae) {
-				resetButton(ae);
+				if(tempStudent==null)resetButton();
+				else resetEditButton();
 			}
 		});
 		btnNewButton_1.setFont(new Font("微软雅黑", Font.BOLD, 13));
@@ -162,27 +167,54 @@ public class AddStudentFrame extends JInternalFrame {
 
 	protected void addStudentButton(ActionEvent ae) {
 		// TODO Auto-generated method stub
+		
 		String username = this.username.getText();
+		String buildingname = this.buildingname.getText();
+		if("".equals(username)||username==null) {
+			JOptionPane.showMessageDialog(this, "请输入学号");
+			return;
+		}
+		if("".equals(buildingname)||buildingname==null) {
+			JOptionPane.showMessageDialog(this, "请输入楼栋名");
+			return;
+		}
+		if("".equals(this.housenumber.getText())||this.housenumber.getText()==null) {
+			JOptionPane.showMessageDialog(this, "请输入门牌号");
+			return;
+		}
 		String name = this.name.getText();
 		String grade = this.grade.getText();
 		String academy = this.academy.getText();
 		String sex = this.sex.getText();
-		String buildingname = this.buildingname.getText();
-		int housenumber = Integer.parseInt(this.housenumber.getText());
-		int age = Integer.parseInt(this.age.getText());
 		String telephone = this.telephone.getText();
 		String major = this.major.getText();
-		
+		Integer age;
+		Integer housenumber = Integer.parseInt(this.housenumber.getText());
+		if("".equals(this.age.getText())||this.age.getText()==null) {
+			 age = null;
+		}else {
+			 age = Integer.parseInt(this.age.getText());
+		}
 		
 		StudentInfo tempStudent = new StudentInfo(username,name,grade,academy,major,sex,age,telephone);
-		Room tempRoom = new Room(buildingname,housenumber,1,1,1);
-		
-		
+		StudentRoom tempSR = new StudentRoom(housenumber,buildingname,username);	
 		StudentInfoDao studentinfodao = new StudentInfoDao();
-		JOptionPane.showMessageDialog(this, studentinfodao.addStudentInfo(tempStudent, tempRoom));
+		if(this.tempStudent ==null)
+		{
+			JOptionPane.showMessageDialog(this, studentinfodao.addStudentInfo(tempStudent,tempSR));
+			setVisible(false);
+		}
+		else {
+			JOptionPane.showMessageDialog(this, studentinfodao.editStuInfo(tempStudent,tempSR));
+			setVisible(false);
+		}
+			
+		if(IndexFrameAdmin.listStudentFrame != null) {
+			IndexFrameAdmin.listStudentFrame.queryAllStu();
+		}
 	}
 
-	protected void resetButton(ActionEvent ae) {
+	protected void resetButton() {
 		// TODO Auto-generated method stub
 		this.username.setText("");
 		this.name.setText("");
@@ -194,5 +226,44 @@ public class AddStudentFrame extends JInternalFrame {
 		this.age.setText("");
 		this.telephone.setText("");
 		this.major.setText("");
+		this.tempStudent = null;
+	}
+	protected void resetEditButton() {
+		this.username.setText(this.tempStudent.getUsername());
+		this.name.setText(this.tempStudent.getName());
+		this.grade.setText(this.tempStudent.getGrade());
+		this.academy.setText(this.tempStudent.getAcademy());
+		this.sex.setText(this.tempStudent.getSex());
+		this.age.setText(this.tempStudent.getAge().toString());
+		this.major.setText(this.tempStudent.getMajor());
+		this.telephone.setText(this.tempStudent.getTelephone());
+		
+		this.buildingname.setText(this.tempSR.getBuildingname());
+		Integer hn = (Integer)this.tempSR.getRoomnumber();
+		this.housenumber.setText(hn.toString());
+		
+	}
+	public void editStudentInfo(StudentInfo tempStu,StudentRoom SR) {
+		setTitle("正在编辑学生信息......");
+		this.tempStudent = tempStu;
+		this.tempSR = SR;
+		this.username.setText(tempStu.getUsername());
+		this.name.setText(tempStu.getName());
+		this.grade.setText(tempStu.getGrade());
+		this.academy.setText(tempStu.getAcademy());
+		this.major.setText(tempStu.getMajor());
+		this.age.setText(tempStu.getAge().toString());
+		this.telephone.setText(tempStu.getTelephone());
+		this.sex.setText(tempStu.getSex());
+		
+		this.buildingname.setText(SR.getBuildingname());
+		Integer housenumber = (Integer)SR.getRoomnumber();
+		this.housenumber.setText(housenumber.toString());
+		
+		
+	}
+	public void doDefaultCloseAction() {
+		setVisible(false);
+		resetButton();
 	}
 }

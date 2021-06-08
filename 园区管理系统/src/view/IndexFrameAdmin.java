@@ -10,6 +10,8 @@ import javax.swing.border.EmptyBorder;
 import model.Admin;
 import model.UserType;
 import view.studentInfor.AddStudentFrame;
+import view.studentInfor.DelStudentFrame;
+import view.studentInfor.ListStudentFrame;
 import view.systemManage.RevisePassword;
 
 import javax.swing.JMenuBar;
@@ -25,12 +27,26 @@ import java.awt.event.ActionEvent;
 public class IndexFrameAdmin extends JFrame {
 
 	private JPanel contentPane;
-	JDesktopPane desktopPane;
+	public static JDesktopPane desktopPane;
 	
 	/**
 	 * Launch the application.
 	 */
 	private RevisePassword revisePassword = null;
+	private DelStudentFrame delStudentFrame = null;
+	public static AddStudentFrame addStudentFrame = null;
+	
+	public JDesktopPane getDesktopPane() {
+		return desktopPane;
+	}
+
+
+
+	public void setDesktopPane(JDesktopPane desktopPane) {
+		this.desktopPane = desktopPane;
+	}
+
+	public static ListStudentFrame listStudentFrame = null;
 	public static UserType userType;
 	public static Admin admin;
 
@@ -80,8 +96,8 @@ public class IndexFrameAdmin extends JFrame {
 		
 		JMenuItem mntmNewMenuItem_2 = new JMenuItem("增加人员");
 		mntmNewMenuItem_2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				addStudent(e);
+			public void actionPerformed(ActionEvent ae) {
+				addStudent(ae);
 			}
 		});
 		mntmNewMenuItem_2.setIcon(new ImageIcon(IndexFrameAdmin.class.getResource("/image/增加人员.png")));
@@ -89,11 +105,22 @@ public class IndexFrameAdmin extends JFrame {
 		mnNewMenu_1.add(mntmNewMenuItem_2);
 		
 		JMenuItem mntmNewMenuItem_1_1 = new JMenuItem("删除人员");
+		mntmNewMenuItem_1_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent ae) {
+				deleteStudent(ae);
+			}
+		});
 		mntmNewMenuItem_1_1.setIcon(new ImageIcon(IndexFrameAdmin.class.getResource("/image/删除人员.png")));
 		mntmNewMenuItem_1_1.setFont(new Font("微软雅黑", Font.BOLD, 15));
 		mnNewMenu_1.add(mntmNewMenuItem_1_1);
 		
 		JMenuItem mntmNewMenuItem_1_1_1 = new JMenuItem("查看人员");
+		mntmNewMenuItem_1_1_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+//				listStudentFrame = null;
+				listStudent(e);
+			}
+		});
 		mntmNewMenuItem_1_1_1.setIcon(new ImageIcon(IndexFrameAdmin.class.getResource("/image/查看人员.png")));
 		mntmNewMenuItem_1_1_1.setFont(new Font("微软雅黑", Font.BOLD, 15));
 		mnNewMenu_1.add(mntmNewMenuItem_1_1_1);
@@ -170,13 +197,38 @@ public class IndexFrameAdmin extends JFrame {
 	    desktopPane = new JDesktopPane();
 		desktopPane.setBackground(Color.LIGHT_GRAY);
 		contentPane.add(desktopPane, BorderLayout.CENTER);
+		
 	}
 
-	protected void addStudent(ActionEvent e) {
+
+
+	protected void listStudent(ActionEvent e) {
 		// TODO Auto-generated method stub
-		AddStudentFrame addStudentFrame = new AddStudentFrame();
+		if(listStudentFrame == null) {
+			listStudentFrame = new ListStudentFrame();		
+			desktopPane.add(listStudentFrame);
+		}
+		listStudentFrame.setVisible(true);
+	}
+
+
+
+	protected void deleteStudent(ActionEvent ae) {
+		// TODO Auto-generated method stub
+		if(delStudentFrame == null) {
+			delStudentFrame = new DelStudentFrame();
+			desktopPane.add(delStudentFrame);
+		}
+		delStudentFrame.setVisible(true);
+	}
+
+	protected void addStudent(ActionEvent ae) {
+		// TODO Auto-generated method stub
+		if(addStudentFrame == null) {
+			addStudentFrame = new AddStudentFrame();		
+			desktopPane.add(addStudentFrame);
+		}
 		addStudentFrame.setVisible(true);
-		desktopPane.add(addStudentFrame);
 	}
 
 	protected void revisePassword(ActionEvent ae) {
@@ -186,7 +238,6 @@ public class IndexFrameAdmin extends JFrame {
 			revisePassword = new RevisePassword();
 			desktopPane.add(revisePassword);
 		}
-		//revisePassword.setBounds(1000-revisePassword.getWidth()/2,(700-revisePassword.getHeight())/2,450,300);
 		revisePassword.setVisible(true);
 	}
 }

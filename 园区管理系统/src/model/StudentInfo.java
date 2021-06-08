@@ -7,7 +7,7 @@ public class StudentInfo {
 	private String academy;
 	private String major;
 	private String sex;
-	private int age;
+	private Integer age;
 	private String telephone;
 	
 	public String getUsername() {
@@ -46,10 +46,10 @@ public class StudentInfo {
 	public void setSex(String sex) {
 		this.sex = sex;
 	}
-	public int getAge() {
+	public Integer getAge() {
 		return age;
 	}
-	public void setAge(int age) {
+	public void setAge(Integer age) {
 		this.age = age;
 	}
 	public String getTelephone() {
@@ -58,7 +58,7 @@ public class StudentInfo {
 	public void setTelephone(String telephone) {
 		this.telephone = telephone;
 	}
-	public StudentInfo(String username, String name, String grade, String academy, String major, String sex, int age,
+	public StudentInfo(String username, String name, String grade, String academy, String major, String sex, Integer age,
 			String telephone) {
 //		super();
 		this.username = username;
@@ -69,6 +69,9 @@ public class StudentInfo {
 		this.sex = sex;
 		this.age = age;
 		this.telephone = telephone;
+	}
+	public StudentInfo() {
+		// TODO Auto-generated constructor stub
 	}
 
 	
