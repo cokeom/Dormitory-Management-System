@@ -1,6 +1,5 @@
 package view;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -8,15 +7,19 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import dao.AdminDao;
+import dao.StudentDao;
 import model.Admin;
+import model.Student;
 import model.UserType;
-import view.studentInfor.ListStudentFrame;
-
+import view.Admin.IndexFrameAdmin;
+import view.Pbuilding.UpdatePdNameFrame;
+import view.Student.IndexFrameStudent;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import java.awt.Font;
 import javax.swing.JComboBox;
+import javax.swing.JDesktopPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.DefaultComboBoxModel;
@@ -85,11 +88,6 @@ public class LoginFrame extends JFrame {
 		adminTypeComb.setBounds(193, 149, 131, 23);
 		contentPane.add(adminTypeComb);
 		
-		JButton btnNewButton = new JButton("注册");
-		btnNewButton.setIcon(new ImageIcon(LoginFrame.class.getResource("/image/注册.png")));
-		btnNewButton.setBounds(10, 230, 97, 23);
-		contentPane.add(btnNewButton);
-		
 		JButton btnNewButton_1 = new JButton("重置");
 		btnNewButton_1.setIcon(new ImageIcon(LoginFrame.class.getResource("/image/重置 (1).png")));
 		btnNewButton_1.addActionListener(new ActionListener() {
@@ -97,7 +95,7 @@ public class LoginFrame extends JFrame {
 				resetButton(ae);
 			}
 		});
-		btnNewButton_1.setBounds(117, 230, 97, 23);
+		btnNewButton_1.setBounds(49, 230, 97, 23);
 		contentPane.add(btnNewButton_1);
 		
 		JButton btnNewButton_2 = new JButton("登录");
@@ -107,7 +105,7 @@ public class LoginFrame extends JFrame {
 				confirmButton(ae);
 			}
 		});
-		btnNewButton_2.setBounds(224, 230, 97, 23);
+		btnNewButton_2.setBounds(173, 230, 97, 23);
 		contentPane.add(btnNewButton_2);
 		
 		JButton btnNewButton_3 = new JButton("取消");
@@ -117,10 +115,9 @@ public class LoginFrame extends JFrame {
 				System.exit(0);
 			}
 		});
-		btnNewButton_3.setBounds(331, 230, 97, 23);
+		btnNewButton_3.setBounds(299, 230, 97, 23);
 		contentPane.add(btnNewButton_3);
 		
-		btnNewButton.setFocusable(false);
 		btnNewButton_1.setFocusable(false);
 		btnNewButton_2.setFocusable(false);
 		btnNewButton_3.setFocusable(false);
@@ -151,7 +148,17 @@ public class LoginFrame extends JFrame {
 			indexFrame.setVisible(true);
 			this.dispose();
 		}else {
+			StudentDao studentDao = new StudentDao();
+			Student student = studentDao.selectStudent(name1, password1);
 			
+			//System.out.println(student);
+			if (student == null) {
+				JOptionPane.showMessageDialog(this, "用户名或密码错误");
+				return;
+			}
+			IndexFrameStudent indexFrame = new IndexFrameStudent(userType,student);
+			indexFrame.setVisible(true);
+			this.dispose();			
 		}
 	}
 

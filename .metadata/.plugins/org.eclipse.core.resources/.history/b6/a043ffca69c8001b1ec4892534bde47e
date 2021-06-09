@@ -1,0 +1,9 @@
+package model;
+
+public class StudentRoom {
+	private String roomnumber;
+	private String buildingname;
+	private String username;
+	
+	
+}

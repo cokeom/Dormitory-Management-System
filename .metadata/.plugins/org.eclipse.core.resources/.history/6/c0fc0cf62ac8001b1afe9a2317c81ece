@@ -1,0 +1,8 @@
+package dao;
+
+public class StuDelDao extends BaseDao{
+
+	public String delStuDao (String username){
+		
+	}
+}

@@ -1,4 +1,4 @@
-package view.studentInfor;
+package view.StudentInfor;
 
 import java.awt.EventQueue;
 
@@ -13,7 +13,7 @@ import dao.StudentInfoDao;
 import model.Room;
 import model.StudentInfo;
 import model.StudentRoom;
-import view.IndexFrameAdmin;
+import view.Admin.IndexFrameAdmin;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;

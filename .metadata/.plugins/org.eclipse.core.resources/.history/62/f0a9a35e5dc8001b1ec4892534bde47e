@@ -1,0 +1,14 @@
+package view.studentInfor;
+
+import java.awt.EventQueue;
+
+import javax.swing.JInternalFrame;
+
+public class UpdateStudentFrame extends JInternalFrame {
+
+	public UpdateStudentFrame() {
+		setBounds(100, 100, 450, 300);
+
+	}
+
+}

@@ -1,12 +1,11 @@
 package model;
-
+//宿舍
 public class Room {
 	private String buildingname;
-	private int housenumber;
+	private Integer housenumber;
 	private Integer electricity;
-//	private Integer water;
 	private Integer population;
-	public Room(String buildingname, int housenumber, Integer electricity, Integer population) {
+	public Room(String buildingname, Integer housenumber, Integer electricity, Integer water, Integer population) {
 		this.buildingname = buildingname;
 		this.housenumber = housenumber;
 		this.electricity = electricity;
@@ -21,10 +20,10 @@ public class Room {
 	public void setBuildingname(String buildingname) {
 		this.buildingname = buildingname;
 	}
-	public int getHousenumber() {
+	public Integer getHousenumber() {
 		return housenumber;
 	}
-	public void setHousenumber(int housenumber) {
+	public void setHousenumber(Integer housenumber) {
 		this.housenumber = housenumber;
 	}
 	public Integer getElectricity() {
@@ -33,12 +32,6 @@ public class Room {
 	public void setElectricity(Integer electricity) {
 		this.electricity = electricity;
 	}
-//	public Integer getWater() {
-//		return water;
-//	}
-//	public void setWater(Integer water) {
-//		this.water = water;
-//	}
 	public Integer getPopulation() {
 		return population;
 	}

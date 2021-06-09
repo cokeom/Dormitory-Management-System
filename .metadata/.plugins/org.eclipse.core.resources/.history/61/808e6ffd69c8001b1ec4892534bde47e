@@ -1,0 +1,34 @@
+package model;
+
+public class StudentRoom {
+	private String roomnumber;
+	private String buildingname;
+	private String username;
+	public String getRoomnumber() {
+		return roomnumber;
+	}
+	public void setRoomnumber(String roomnumber) {
+		this.roomnumber = roomnumber;
+	}
+	public String getBuildingname() {
+		return buildingname;
+	}
+	public void setBuildingname(String buildingname) {
+		this.buildingname = buildingname;
+	}
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	public StudentRoom(String roomnumber, String buildingname, String username) {
+		this.roomnumber = roomnumber;
+		this.buildingname = buildingname;
+		this.username = username;
+	}
+	public StudentRoom() {
+	}
+	
+	
+}

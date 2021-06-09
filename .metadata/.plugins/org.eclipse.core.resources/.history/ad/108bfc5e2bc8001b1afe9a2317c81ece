@@ -1,0 +1,10 @@
+package dao;
+
+public class StuDelDao extends BaseDao{
+
+	public String delStuDao (String username){
+		String resultStr = "删除失败";
+		return resultStr;
+		
+	}
+}

@@ -1,4 +1,4 @@
-package view.studentInfor;
+package view.StudentInfor;
 
 import java.awt.EventQueue;
 

@@ -11,9 +11,15 @@
 		<item key="height" value="440"/>
 	</section>
 	<section name="org.eclipse.wb.internal.core.model.util.RenameConvertSupport$RenameDialog">
-		<item key="x" value="898"/>
-		<item key="y" value="327"/>
+		<item key="x" value="826"/>
+		<item key="y" value="647"/>
 		<item key="width" value="613"/>
 		<item key="height" value="375"/>
+	</section>
+	<section name="org.eclipse.wb.internal.swing.model.property.editor.models.table.TableModelDialog">
+		<item key="x" value="504"/>
+		<item key="y" value="180"/>
+		<item key="width" value="1314"/>
+		<item key="height" value="669"/>
 	</section>
 </section>

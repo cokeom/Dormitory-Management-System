@@ -1,0 +1,23 @@
+package dao;
+
+import java.sql.SQLException;
+
+public class StuDelDao extends BaseDao{
+
+	public String delStuDao (String username){
+		String resultStr = "删除失败";
+		String sqlStr = "delete from studentInfo where username = ?";
+		try {
+			this.pStatement = this.con.prepareStatement(sqlStr);
+			this.pStatement.setString(1, username);
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
+		return resultStr;
+	}
+}
