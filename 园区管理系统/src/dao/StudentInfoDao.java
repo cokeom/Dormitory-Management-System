@@ -15,21 +15,23 @@ public class StudentInfoDao extends BaseDao{
 		String sqlStr1 = "insert into student values(?,?,?,?,?,?,?,?)";
 		String sqlStr2 = "insert into student_room values(?,?,?)";
 		try {
-			this.pStatement = this.con.prepareStatement(sqlStr1);
-			this.pStatement.setString(1,tempStu.getUsername());
-			this.pStatement.setString(2,tempStu.getName());
-			this.pStatement.setString(3,tempStu.getGrade());
-			this.pStatement.setString(4,tempStu.getAcademy());
-			this.pStatement.setString(5,tempStu.getMajor());
-			this.pStatement.setString(6,tempStu.getSex());
-			this.pStatement.setObject(7, tempStu.getAge());
-			this.pStatement.setString(8,tempStu.getTelephone());
+
+			this.pStatement = this.con.prepareStatement(sqlStr2);
+			this.pStatement.setInt(1,tempSR.getRoomnumber());
+			this.pStatement.setString(2,tempSR.getBuildingname());
+			this.pStatement.setString(3, tempStu.getUsername());
+
 			
 			if(this.pStatement.executeUpdate()>0) {
-				this.pStatement = this.con.prepareStatement(sqlStr2);
-				this.pStatement.setInt(1,tempSR.getRoomnumber());
-				this.pStatement.setString(2,tempSR.getBuildingname());
-				this.pStatement.setString(3, tempStu.getUsername());
+				this.pStatement = this.con.prepareStatement(sqlStr1);
+				this.pStatement.setString(1,tempStu.getUsername());
+				this.pStatement.setString(2,tempStu.getName());
+				this.pStatement.setString(3,tempStu.getGrade());
+				this.pStatement.setString(4,tempStu.getAcademy());
+				this.pStatement.setString(5,tempStu.getMajor());
+				this.pStatement.setString(6,tempStu.getSex());
+				this.pStatement.setObject(7, tempStu.getAge());
+				this.pStatement.setString(8,tempStu.getTelephone());				
 				if(this.pStatement.executeUpdate()>0) {
 					resultStr = "添加成功";
 				}

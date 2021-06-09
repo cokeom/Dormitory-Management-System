@@ -1,5 +1,4 @@
 INDEX VERSION 1.131+C:\Users\Coke\Desktop\Ô°Çø¹ÜÀí\.metadata\.plugins\org.eclipse.jdt.core
 2283707711.index
 2395602107.index
-1688902549.index
 1186150766.index

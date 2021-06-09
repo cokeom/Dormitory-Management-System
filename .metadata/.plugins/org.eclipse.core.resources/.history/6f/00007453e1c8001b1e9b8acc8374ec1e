@@ -6,10 +6,11 @@ import java.util.ArrayList;
 
 import model.Room;
 import model.StudentInfo;
+import model.StudentRoom;
 
 public class StudentInfoDao extends BaseDao{
 
-	public String addStudentInfo(StudentInfo tempStu , Room tempRoom) {
+	public String addStudentInfo(StudentInfo tempStu , StudentRoom tempSR) {
 		String resultStr = "添加失败";
 		String sqlStr1 = "insert into student values(?,?,?,?,?,?,?,?)";
 		String sqlStr2 = "insert into student_room values(?,?,?)";
@@ -21,13 +22,13 @@ public class StudentInfoDao extends BaseDao{
 			this.pStatement.setString(4,tempStu.getAcademy());
 			this.pStatement.setString(5,tempStu.getMajor());
 			this.pStatement.setString(6,tempStu.getSex());
-			this.pStatement.setInt(7, tempStu.getAge());
+			this.pStatement.setObject(7, tempStu.getAge());
 			this.pStatement.setString(8,tempStu.getTelephone());
 			
 			if(this.pStatement.executeUpdate()>0) {
 				this.pStatement = this.con.prepareStatement(sqlStr2);
-				this.pStatement.setInt(1,tempRoom.getHousenumber());
-				this.pStatement.setString(2,tempRoom.getBuildingname());
+				this.pStatement.setInt(1,tempSR.getRoomnumber());
+				this.pStatement.setString(2,tempSR.getBuildingname());
 				this.pStatement.setString(3, tempStu.getUsername());
 				if(this.pStatement.executeUpdate()>0) {
 					resultStr = "添加成功";
@@ -57,6 +58,7 @@ public class StudentInfoDao extends BaseDao{
 				tempStu.setMajor(executeQuery.getString(5));
 				tempStu.setSex(executeQuery.getString(6));
 				tempStu.setAge(executeQuery.getInt(7));
+				if(tempStu.getAge()==0)tempStu.setAge(null);
 				tempStu.setTelephone(executeQuery.getString(8));
 				array.add(tempStu);
 			}
@@ -108,6 +110,87 @@ public class StudentInfoDao extends BaseDao{
 			this.close();
 		}			
 		return arrays;
+		
+	}
+
+
+	public String delStuDao (String username){
+		String resultStr = "删除失败";
+		String sqlStr = "delete from student where student_number = ?";
+		try {
+			this.pStatement = this.con.prepareStatement(sqlStr);
+			this.pStatement.setString(1, username);
+			if(this.pStatement.executeUpdate()>0) {
+				resultStr = "删除成功";
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			this.close();
+		}
+		return resultStr;
+	}
+
+	public StudentRoom queryStuRoom(String username){
+		StudentRoom SR = new StudentRoom();
+		String sqlStr = "select * from student_room where student_number = ?";
+		try {
+			this.pStatement = this.con.prepareStatement(sqlStr);
+			this.pStatement.setString(1, username);
+			ResultSet executeQuery = this.pStatement.executeQuery();
+			while(executeQuery.next()) {
+				StudentRoom tempStuRoom = new StudentRoom();
+				tempStuRoom.setRoomnumber(executeQuery.getInt(1));
+				tempStuRoom.setBuildingname(executeQuery.getString(2));
+				tempStuRoom.setUsername(username);
+//				System.out.println(tempStuRoom.getBuildingname());
+//				System.out.println(tempStuRoom.getRoomnumber());
+//				System.out.println(tempStuRoom.getUsername());
+				SR = tempStuRoom;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			this.close();
+		}
+		
+		return SR;
+	}
+
+	public String editStuInfo(StudentInfo tempStu,StudentRoom SR) {
+		String resultStr  = "修改失败";
+		String sqlStr1 = "update student set name = ?,grade = ?,college = ?,major = ?,sex = ?,age = ?,tel= ? where student_number = ?";
+		String sqlStr2 = "update student_room set room_number = ? ,Bname = ? where student_number = ?";
+		try {
+			this.pStatement = this.con.prepareStatement(sqlStr1);
+			this.pStatement.setString(1, tempStu.getName());
+			this.pStatement.setString(2, tempStu.getGrade());
+			this.pStatement.setString(3, tempStu.getAcademy());
+			this.pStatement.setString(4, tempStu.getMajor());
+			this.pStatement.setString(5, tempStu.getSex());
+			this.pStatement.setString(6, tempStu.getAge().toString());
+			this.pStatement.setString(7, tempStu.getTelephone());
+			this.pStatement.setString(8, tempStu.getUsername());
+
+			if(this.pStatement.executeUpdate()>0) {
+				this.pStatement = this.con.prepareStatement(sqlStr2);
+				this.pStatement.setInt(1, SR.getRoomnumber());
+				this.pStatement.setString(2, SR.getBuildingname());
+				this.pStatement.setString(3, SR.getUsername());
+				if(this.pStatement.executeUpdate()>0) {
+					resultStr = "修改成功";
+				}
+			}
+			
+		}catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			this.close();
+		}
+		return resultStr;
 		
 	}
 }

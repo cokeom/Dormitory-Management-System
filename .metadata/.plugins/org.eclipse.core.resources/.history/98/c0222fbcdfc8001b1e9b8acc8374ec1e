@@ -16,9 +16,9 @@ import view.DorManage.ListRoomStuFrame;
 import view.DorManage.WaterFee;
 import view.Pbuilding.ListPbuildingFrame;
 import view.Pbuilding.UpdatePdNameFrame;
-import view.studentInfor.AddStudentFrame;
-import view.studentInfor.DelStudentFrame;
-import view.studentInfor.ListStudentFrame;
+import view.StudentInfor.AddStudentFrame;
+import view.StudentInfor.DelStudentFrame;
+import view.StudentInfor.ListStudentFrame;
 
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;

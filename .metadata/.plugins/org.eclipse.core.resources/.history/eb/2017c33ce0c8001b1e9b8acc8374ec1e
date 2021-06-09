@@ -11,7 +11,7 @@ import view.Canteen.ListCanteenFrame;
 import view.DorManage.ListRoomStuFrame;
 import view.Pbuilding.ListPbuildingFrame;
 import view.Student.RevisePasswordStudent;
-import view.studentInfor.ListStudentFrame;
+import view.StudentInfor.ListStudentFrame;
 
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;

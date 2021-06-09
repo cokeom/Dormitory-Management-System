@@ -1,10 +1,8 @@
 package view.Canteen;
 
 import javax.swing.JInternalFrame;
-import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 import dao.CanteenDao;
@@ -44,13 +42,6 @@ public class ListCanteenFrame extends JInternalFrame {
 				return false;
 			}
 		});
-		
-		canListTable.getTableHeader().setReorderingAllowed(false);
-		canListTable.setRowHeight(25);
-		DefaultTableCellRenderer r = new DefaultTableCellRenderer();
-		r.setHorizontalAlignment(JLabel.CENTER);
-		canListTable.setDefaultRenderer(Object.class,r);
-		
 		canListTable.getColumnModel().getColumn(2).setPreferredWidth(53);
 		canListTable.getColumnModel().getColumn(3).setPreferredWidth(116);
 		scrollPane.setViewportView(canListTable);

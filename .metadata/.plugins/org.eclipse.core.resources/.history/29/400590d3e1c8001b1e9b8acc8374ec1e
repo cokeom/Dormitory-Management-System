@@ -50,8 +50,7 @@ public class RoomDao extends BaseDao{
 				tempStudent.setMajor(executeQuery.getString(5));
 				tempStudent.setAcademy(executeQuery.getString(4));
 				tempStudent.setSex(executeQuery.getString(6));
-				tempStudent.setAge(executeQuery.getInt(7));
-				if(tempStudent.getAge()==0)tempStudent.setAge(null);
+				tempStudent.setAge(Integer.parseInt(executeQuery.getString(7)));
 				tempStudent.setTelephone(executeQuery.getString(8));
 				array.add(tempStudent);
 			}
