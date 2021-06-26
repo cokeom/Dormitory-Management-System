@@ -14,8 +14,11 @@ public class StudentInfoDao extends BaseDao{
 		String resultStr = "添加失败";
 		String sqlStr1 = "insert into student values(?,?,?,?,?,?,?,?)";
 		String sqlStr2 = "insert into student_room values(?,?,?)";
+		String sqlStr3 = "set foreign_key_checks = 0;";
+		String sqlStr4 = "set foreign_key_checks = 1;";
 		try {
-
+			this.pStatement = this.con.prepareStatement(sqlStr3);
+			ResultSet executeQuery1 = this.pStatement.executeQuery();
 			this.pStatement = this.con.prepareStatement(sqlStr2);
 			this.pStatement.setInt(1,tempSR.getRoomnumber());
 			this.pStatement.setString(2,tempSR.getBuildingname());
@@ -35,6 +38,8 @@ public class StudentInfoDao extends BaseDao{
 				if(this.pStatement.executeUpdate()>0) {
 					resultStr = "添加成功";
 				}
+				this.pStatement = this.con.prepareStatement(sqlStr4);
+				ResultSet executeQuery2 = this.pStatement.executeQuery();
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
